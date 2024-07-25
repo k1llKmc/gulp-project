@@ -5,6 +5,8 @@ const browserSync = require('browser-sync').create();
 const uglify = require('gulp-uglify-es').default;
 const cachebust = require('gulp-cache-bust');
 const bem = require('gulp-html-bem-validator');
+const imagemin = require('gulp-imagemin');
+const del = require('del');
 
 // SYNC
 function browsersync() {
@@ -27,7 +29,6 @@ function watching() {
 exports.watch = watching;
 
 // HTML
-
 function html() {
   return src('app/index.html')
     .pipe(bem())
@@ -37,7 +38,7 @@ function html() {
     .pipe(dest('app'));
 }
 
-exports.html = html
+exports.html = html;
 
 // STYLES
 function styles() {
@@ -61,6 +62,18 @@ function scripts() {
 
 exports.scripts = scripts;
 
+// IMAGES
+function images() {
+  return src(['app/src/images/**/*', '!app/src/images/**/*.svg'], { base: 'app' })
+    .pipe(imagemin())
+    .pipe(dest('dist'));
+}
+
+// DEL
+function cleanDist() {
+  return del('dist/**/*');
+}
+
 // BUILD
 function build() {
   return src([
@@ -73,7 +86,7 @@ function build() {
     .pipe(dest('dist/'));
 }
 
-exports.build = build
+exports.build = series(cleanDist, build, images);
 
 // DEFAULT TASK
 exports.default = parallel(styles, scripts, html, browsersync, watching);
