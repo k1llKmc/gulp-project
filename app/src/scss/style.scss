@@ -3,6 +3,30 @@
   src: url("../fonts/Montserrat-var.ttf");
 }
 
+::-webkit-scrollbar {
+  width: 14px;
+  height: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #242424;
+  border-radius: 10px;
+  border: 3px solid #e7e7e7;
+}
+
+::-webkit-scrollbar-track {
+  background: #e7e7e7;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #000;
+}
+
+::-webkit-scrollbar-corner {
+  background: #f1f1f1;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -34,11 +58,11 @@
       font-weight: 500;
       color: hsla(0, 0%, 5%, 1);
       text-transform: uppercase;
-      transition-duration: .3s;
+      transition-duration: 0.3s;
     }
 
-    &-link:hover{
-      color: #F41240;
+    &-link:hover {
+      color: #f41240;
     }
   }
 
@@ -79,12 +103,18 @@
         align-items: center;
         justify-content: center;
         gap: 13px;
+        cursor: pointer;
 
         span {
           font-size: 18px;
           font-weight: 500;
           color: white;
+          transition: 0.5s;
         }
+      }
+
+      &-mail:hover span {
+        color: #f41240;
       }
     }
   }
@@ -95,6 +125,7 @@
   align-items: center;
   text-align: center;
   flex-direction: column;
+  position: relative;
   width: 100%;
   gap: 70px;
   margin-bottom: 36px;
@@ -115,6 +146,7 @@
     &__main {
       display: flex;
       flex-direction: row;
+      position: relative;
       gap: 50px;
     }
 
@@ -129,7 +161,6 @@
         border-radius: 10px;
         height: 500px;
         transition: 0.5s;
-        // height: 550px;
       }
 
       &-info {
@@ -139,9 +170,9 @@
         justify-content: space-between;
         width: calc(100% - 80px);
         bottom: 45px;
-        // bottom: -75px;
         transition: 0.5s;
       }
+
       &-name {
         display: flex;
         align-items: center;
@@ -151,33 +182,81 @@
         color: rgb(255, 255, 255);
         transition: 0.5s;
 
+        svg {
+          transition: 0.5s;
+        }
+
         path {
           stroke: rgb(255, 255, 255);
           transition: 0.5s;
         }
       }
-    }
 
-    &__block:hover &__block-info {
-      padding:  25px 0 0 0;
-      bottom: -75px;
-      width: 100%;
-    }
+      &:hover &-info {
+        padding: 25px 0 0 0;
+        bottom: -75px;
+        width: 100%;
+      }
 
-    &__block:hover &__block-img {
-      height: 550px;
-    }
+      &:hover &-img {
+        height: 550px;
+      }
 
-    &__block:hover &__block-name {
-      color: black;
-    }
+      &:hover &-name {
+        color: black;
+      }
 
-    &__block:hover &__block-name path {
-      stroke: black;
-    }
+      &:hover &-name path {
+        stroke: black;
+      }
 
-    &__block:not(:hover) {
-      height: 500px;
+      &:not(:hover) {
+        height: 500px;
+      }
     }
   }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+    position: absolute;
+    right: 208px;
+    top: 700px;
+
+    &-prev {
+      transform: rotate(-180deg);
+    }
+
+    svg {
+      width: 40px;
+    }
+
+    path {
+      stroke: #000;
+    }
+
+    &__piganation {
+      display: flex;
+      gap: 30px;
+    }
+
+    &-dot {
+      width: 20px;
+      height: 20px;
+      border: 1px solid hsla(0, 0%, 51%, 1);
+      border-radius: 100%;
+      transition: .5s;
+    }
+
+    &-dot:hover{
+      background-color: #f41240;
+      border: none;
+    }
+  }
+}
+
+
+.signal{
+  width: 100%;
 }
